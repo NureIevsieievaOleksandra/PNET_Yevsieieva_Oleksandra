@@ -1,0 +1,77 @@
+@page "{id:int}"
+@model CinemaApp.Pages.Films.EditModel
+@{
+    ViewData["Title"] = "Редагування фільму";
+}
+
+<div class="page-header">
+    <div>
+        <div class="page-title">РЕДАГУВАННЯ</div>
+        <div class="page-subtitle">@Model.Film.Title</div>
+    </div>
+    <a href="/Films" class="btn btn-secondary">← Назад</a>
+</div>
+
+<div class="card">
+    <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+    <form method="post">
+        <input type="hidden" asp-for="Film.Film_ID" />
+        <div class="form-grid">
+            <div class="form-group">
+                <label asp-for="Film.Title" class="form-label"></label>
+                <input asp-for="Film.Title" class="form-control" />
+                <span asp-validation-for="Film.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Film.Studio_ID" class="form-label"></label>
+                <select asp-for="Film.Studio_ID" asp-items="Model.Studios" class="form-control">
+                    <option value="">— Студія —</option>
+                </select>
+                <span asp-validation-for="Film.Studio_ID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Film.Genre" class="form-label"></label>
+                <select asp-for="Film.Genre" class="form-control">
+                    <option value="">— Жанр —</option>
+                    <option>Бойовик</option>
+                    <option>Драма</option>
+                    <option>Комедія</option>
+                    <option>Фантастика</option>
+                    <option>Жахи</option>
+                    <option>Романтика</option>
+                    <option>Анімація</option>
+                    <option>Документальний</option>
+                </select>
+                <span asp-validation-for="Film.Genre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Film.ReleaseYear" class="form-label"></label>
+                <input asp-for="Film.ReleaseYear" class="form-control" type="number" />
+                <span asp-validation-for="Film.ReleaseYear" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Film.Duration" class="form-label"></label>
+                <input asp-for="Film.Duration" class="form-control" type="number" />
+                <span asp-validation-for="Film.Duration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Film.Rating" class="form-label"></label>
+                <input asp-for="Film.Rating" class="form-control" type="number" step="0.1" />
+                <span asp-validation-for="Film.Rating" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Film.Description" class="form-label"></label>
+            <textarea asp-for="Film.Description" class="form-control" rows="3"></textarea>
+            <span asp-validation-for="Film.Description" class="text-danger"></span>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Зберегти</button>
+            <a href="/Films/Details/@Model.Film.Film_ID" class="btn btn-secondary">Скасувати</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

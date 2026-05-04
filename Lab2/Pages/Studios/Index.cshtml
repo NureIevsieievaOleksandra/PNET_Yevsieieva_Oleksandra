@@ -1,0 +1,61 @@
+@page
+@model CinemaApp.Pages.Studios.IndexModel
+@{ViewData["Title"] = "Студії";}
+
+<div class="page-header">
+    <div>
+        <div class="page-title">СТУДІЇ</div>
+        <div class="page-subtitle">Знайдено: @Model.Studios.Count()</div>
+    </div>
+    <a href="/Studios/Create" class="btn btn-primary">➕ Додати</a>
+</div>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+
+<form method="get" class="search-bar">
+    <input type="text" name="SearchName" class="form-control"
+           placeholder="Назва студії..." value="@Model.SearchName">
+    <input type="text" name="SearchCountry" class="form-control"
+           placeholder="Країна..." value="@Model.SearchCountry" style="max-width:200px">
+    <button type="submit" class="btn btn-primary">Фільтр</button>
+    <a href="/Studios" class="btn btn-secondary">Скинути</a>
+</form>
+
+@if (!Model.Studios.Any())
+{
+    <div class="empty-state">
+        <div class="empty-state-icon"></div>
+        <p>Студій не знайдено</p>
+    </div>
+}
+else
+{
+    <div class="table-wrapper">
+        <table class="data-table">
+            <thead>
+                <tr><th>#</th><th>Назва</th><th>Країна</th><th>Рік заснування</th><th>Інформація</th><th>Дії</th></tr>
+            </thead>
+            <tbody>
+            @foreach (var s in Model.Studios)
+            {
+                <tr>
+                    <td style="color:var(--text-muted)">@s.Studio_ID</td>
+                    <td><strong>@s.Name</strong></td>
+                    <td>@(s.Country ?? "—")</td>
+                    <td>@(s.Founded?.ToString() ?? "—")</td>
+                    <td style="color:var(--text-muted);font-size:0.82rem">@(s.Info ?? "—")</td>
+                    <td>
+                        <div class="actions">
+                            <a href="/Studios/Edit/@s.Studio_ID" class="btn btn-sm btn-secondary">✏️</a>
+                            <a href="/Studios/Delete/@s.Studio_ID" class="btn btn-sm btn-danger">🗑</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}

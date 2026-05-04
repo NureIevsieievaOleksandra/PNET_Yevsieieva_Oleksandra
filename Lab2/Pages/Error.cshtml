@@ -1,0 +1,17 @@
+@page
+@model CinemaApp.Pages.ErrorModel
+@{ViewData["Title"] = "Помилка";}
+
+<div class="page-header">
+    <div class="page-title">ПОМИЛКА</div>
+</div>
+<div class="card" style="max-width:600px">
+    <div class="alert alert-danger">
+        ⚠️ Сталася помилка при обробці запиту.
+        @if (Model.ShowRequestId)
+        {
+            <p style="margin-top:.5rem;font-size:.8rem">Request ID: <code>@Model.RequestId</code></p>
+        }
+    </div>
+    <a href="/" class="btn btn-primary">← На головну</a>
+</div>

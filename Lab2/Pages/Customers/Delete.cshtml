@@ -1,0 +1,16 @@
+@page "{id:int}"
+@model CinemaApp.Pages.Customers.DeleteModel
+@{ViewData["Title"] = "Видалити клієнта";}
+
+<div class="page-header"><div class="page-title">ВИДАЛИТИ КЛІЄНТА</div></div>
+<div class="card" style="max-width:500px">
+    <div class="alert alert-danger">⚠️ Видалити клієнта <strong>«@Model.Customer.FullName»</strong>? Всі його квитки також будуть видалені.</div>
+    <div class="detail-item"><div class="detail-label">Телефон</div><div class="detail-value">@(Model.Customer.Phone ?? "—")</div></div>
+    <div class="detail-item"><div class="detail-label">Email</div><div class="detail-value">@(Model.Customer.Email ?? "—")</div></div>
+    <form method="post" asp-route-id="@Model.Customer.Customer_ID">
+        <div class="form-actions">
+            <button type="submit" class="btn btn-danger">🗑 Видалити</button>
+            <a href="/Customers" class="btn btn-secondary">Скасувати</a>
+        </div>
+    </form>
+</div>

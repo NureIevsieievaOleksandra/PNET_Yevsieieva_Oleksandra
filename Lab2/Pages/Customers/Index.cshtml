@@ -1,0 +1,63 @@
+@page
+@model CinemaApp.Pages.Customers.IndexModel
+@{ViewData["Title"] = "Клієнти";}
+
+<div class="page-header">
+    <div>
+        <div class="page-title">КЛІЄНТИ</div>
+        <div class="page-subtitle">Знайдено: @Model.Customers.Count()</div>
+    </div>
+    <a href="/Customers/Create" class="btn btn-primary">➕ Новий клієнт</a>
+</div>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+
+<form method="get" class="search-bar">
+    <input type="text" name="SearchName" class="form-control"
+           placeholder="Ім'я або прізвище..." value="@Model.SearchName">
+    <input type="email" name="SearchEmail" class="form-control"
+           placeholder="Email..." value="@Model.SearchEmail" style="max-width:220px">
+    <input type="text" name="SearchPhone" class="form-control"
+           placeholder="Телефон..." value="@Model.SearchPhone" style="max-width:180px">
+    <button type="submit" class="btn btn-primary">Фільтр</button>
+    <a href="/Customers" class="btn btn-secondary">Скинути</a>
+</form>
+
+@if (!Model.Customers.Any())
+{
+    <div class="empty-state">
+        <div class="empty-state-icon">👥</div>
+        <p>Клієнтів не знайдено</p>
+    </div>
+}
+else
+{
+    <div class="table-wrapper">
+        <table class="data-table">
+            <thead>
+                <tr><th>#</th><th>Ім'я</th><th>Прізвище</th><th>Телефон</th><th>Email</th><th>Дії</th></tr>
+            </thead>
+            <tbody>
+            @foreach (var c in Model.Customers)
+            {
+                <tr>
+                    <td style="color:var(--text-muted)">@c.Customer_ID</td>
+                    <td>@c.FirstName</td>
+                    <td><strong>@c.LastName</strong></td>
+                    <td>@(c.Phone ?? "—")</td>
+                    <td style="color:var(--text-muted)">@(c.Email ?? "—")</td>
+                    <td>
+                        <div class="actions">
+                            <a href="/Customers/Edit/@c.Customer_ID" class="btn btn-sm btn-secondary">✏️</a>
+                            <a href="/Customers/Delete/@c.Customer_ID" class="btn btn-sm btn-danger">🗑</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}

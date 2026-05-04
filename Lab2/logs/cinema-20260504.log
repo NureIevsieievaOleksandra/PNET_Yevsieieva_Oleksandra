@@ -1,0 +1,458 @@
+2026-05-04 09:22:27 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-05-04 09:22:27 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-05-04 09:22:27 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-05-04 09:22:27 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-05-04 09:22:27 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-05-04 09:22:27 [INF] No migrations were applied. The database is already up to date.
+2026-05-04 09:22:27 [INF] Database migrations applied successfully
+2026-05-04 09:22:27 [INF] User profile is available. Using 'C:\Users\Олександра Євсєєва\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-05-04 09:22:27 [INF] Now listening on: http://localhost:5000
+2026-05-04 09:22:27 [INF] Application started. Press Ctrl+C to shut down.
+2026-05-04 09:22:27 [INF] Hosting environment: Production
+2026-05-04 09:22:27 [INF] Content root path: C:\projects\CinemaApp\CinemaApp
+2026-05-04 09:22:36 [INF] Request starting HTTP/1.1 GET http://localhost:5000/ - null null
+2026-05-04 09:22:36 [WRN] Failed to determine the https port for redirect.
+2026-05-04 09:22:36 [INF] Executing endpoint '/Index'
+2026-05-04 09:22:36 [INF] Route matched with {page = "/Index"}. Executing page /Index
+2026-05-04 09:22:36 [INF] Executing handler method CinemaApp.Pages.IndexModel.OnGetAsync - ModelState is "Valid"
+2026-05-04 09:22:36 [INF] Dashboard loaded at "2026-05-04T09:22:36.3528383+03:00"
+2026-05-04 09:22:36 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Films] AS [f]
+2026-05-04 09:22:36 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Studios] AS [s]
+2026-05-04 09:22:36 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Screenings] AS [s]
+2026-05-04 09:22:36 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COALESCE(SUM([t].[Quantity]), 0)
+FROM [Tickets] AS [t]
+2026-05-04 09:22:36 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Customers] AS [c]
+2026-05-04 09:22:36 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COALESCE(SUM(CAST([t].[Quantity] AS float) * [s].[TicketPrice]), 0.0E0)
+FROM [Tickets] AS [t]
+INNER JOIN [Screenings] AS [s] ON [t].[Screening_ID] = [s].[Screening_ID]
+2026-05-04 09:22:36 [INF] Executed DbCommand (26ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_0) [f].[Title], COALESCE(SUM([t].[Quantity]), 0)
+FROM [Tickets] AS [t]
+INNER JOIN [Screenings] AS [s] ON [t].[Screening_ID] = [s].[Screening_ID]
+INNER JOIN [Films] AS [f] ON [s].[Film_ID] = [f].[Film_ID]
+GROUP BY [f].[Title]
+ORDER BY COALESCE(SUM([t].[Quantity]), 0) DESC
+2026-05-04 09:22:36 [INF] Executed handler method OnGetAsync, returned result .
+2026-05-04 09:22:36 [INF] Executing an implicit handler method - ModelState is "Valid"
+2026-05-04 09:22:36 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2026-05-04 09:22:36 [INF] Executed page /Index in 529.7514ms
+2026-05-04 09:22:36 [INF] Executed endpoint '/Index'
+2026-05-04 09:22:36 [INF] Request starting HTTP/1.1 GET http://localhost:5000/css/site.css?v=2w1hAQtVo80M-Etjq12YmQLapSWUaXHcqlHhLvw_Nlc - null null
+2026-05-04 09:22:36 [INF] Request starting HTTP/1.1 GET http://localhost:5000/js/site.js?v=OaFVNAiL_HikoddHAOvzkgucLSZsI7JqLTkK5uhmq8k - null null
+2026-05-04 09:22:36 [INF] HTTP GET / responded 200 in 560.1001 ms
+2026-05-04 09:22:36 [INF] The file /css/site.css was not modified
+2026-05-04 09:22:36 [INF] The file /js/site.js was not modified
+2026-05-04 09:22:36 [INF] Request finished HTTP/1.1 GET http://localhost:5000/css/site.css?v=2w1hAQtVo80M-Etjq12YmQLapSWUaXHcqlHhLvw_Nlc - 304 null text/css 19.856ms
+2026-05-04 09:22:36 [INF] Request finished HTTP/1.1 GET http://localhost:5000/js/site.js?v=OaFVNAiL_HikoddHAOvzkgucLSZsI7JqLTkK5uhmq8k - 304 null text/javascript 22.7629ms
+2026-05-04 09:22:36 [INF] Request finished HTTP/1.1 GET http://localhost:5000/ - 200 null text/html; charset=utf-8 609.1315ms
+2026-05-04 09:22:36 [INF] Request starting HTTP/1.1 GET http://localhost:5000/favicon.ico - null null
+2026-05-04 09:22:36 [INF] HTTP GET /favicon.ico responded 404 in 0.0750 ms
+2026-05-04 09:22:37 [INF] Request finished HTTP/1.1 GET http://localhost:5000/favicon.ico - 404 0 null 9.0749ms
+2026-05-04 09:22:37 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5000/favicon.ico, Response status code: 404
+2026-05-04 09:23:20 [INF] Request starting HTTP/1.1 GET http://localhost:5000/Films - null null
+2026-05-04 09:23:20 [INF] Executing endpoint '/Films/Index'
+2026-05-04 09:23:20 [INF] Route matched with {page = "/Films/Index"}. Executing page /Films/Index
+2026-05-04 09:23:20 [INF] Executing handler method CinemaApp.Pages.Films.IndexModel.OnGetAsync - ModelState is "Valid"
+2026-05-04 09:23:20 [INF] Films list requested. Filter: title=null, genre=null
+2026-05-04 09:23:20 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [f].[Film_ID], [f].[Description], [f].[Duration], [f].[Genre], [f].[Rating], [f].[ReleaseYear], [f].[Studio_ID], [f].[Title], [s].[Studio_ID], [s].[Country], [s].[Founded], [s].[Info], [s].[Name]
+FROM [Films] AS [f]
+INNER JOIN [Studios] AS [s] ON [f].[Studio_ID] = [s].[Studio_ID]
+ORDER BY [f].[Title]
+2026-05-04 09:23:20 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Studio_ID], [s].[Country], [s].[Founded], [s].[Info], [s].[Name]
+FROM [Studios] AS [s]
+2026-05-04 09:23:20 [INF] Executed handler method OnGetAsync, returned result .
+2026-05-04 09:23:20 [INF] Executing an implicit handler method - ModelState is "Valid"
+2026-05-04 09:23:20 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2026-05-04 09:23:20 [INF] Executed page /Films/Index in 181.3434ms
+2026-05-04 09:23:20 [INF] Executed endpoint '/Films/Index'
+2026-05-04 09:23:20 [INF] HTTP GET /Films responded 200 in 194.8328 ms
+2026-05-04 09:23:20 [INF] Request finished HTTP/1.1 GET http://localhost:5000/Films - 200 null text/html; charset=utf-8 202.9721ms
+2026-05-04 09:23:59 [INF] Request starting HTTP/1.1 GET http://localhost:5000/Films/Edit/11 - null null
+2026-05-04 09:23:59 [INF] Executing endpoint '/Films/Edit'
+2026-05-04 09:23:59 [INF] Route matched with {page = "/Films/Edit"}. Executing page /Films/Edit
+2026-05-04 09:23:59 [INF] Executing handler method CinemaApp.Pages.Films.EditModel.OnGetAsync - ModelState is "Valid"
+2026-05-04 09:23:59 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [f].[Film_ID], [f].[Description], [f].[Duration], [f].[Genre], [f].[Rating], [f].[ReleaseYear], [f].[Studio_ID], [f].[Title]
+FROM [Films] AS [f]
+WHERE [f].[Film_ID] = @__p_0
+2026-05-04 09:23:59 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Studio_ID], [s].[Country], [s].[Founded], [s].[Info], [s].[Name]
+FROM [Studios] AS [s]
+2026-05-04 09:23:59 [INF] Executed handler method OnGetAsync, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2026-05-04 09:23:59 [INF] Executed page /Films/Edit in 83.3279ms
+2026-05-04 09:23:59 [INF] Executed endpoint '/Films/Edit'
+2026-05-04 09:23:59 [INF] HTTP GET /Films/Edit/11 responded 200 in 99.4208 ms
+2026-05-04 09:23:59 [INF] Request finished HTTP/1.1 GET http://localhost:5000/Films/Edit/11 - 200 null text/html; charset=utf-8 106.1856ms
+2026-05-04 09:25:05 [INF] Request starting HTTP/1.1 GET http://localhost:5000/Films/Details/11 - null null
+2026-05-04 09:25:05 [INF] Executing endpoint '/Films/Details'
+2026-05-04 09:25:05 [INF] Route matched with {page = "/Films/Details"}. Executing page /Films/Details
+2026-05-04 09:25:05 [INF] Executing handler method CinemaApp.Pages.Films.DetailsModel.OnGetAsync - ModelState is "Valid"
+2026-05-04 09:25:05 [INF] Executed DbCommand (3ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Film_ID], [t].[Description], [t].[Duration], [t].[Genre], [t].[Rating], [t].[ReleaseYear], [t].[Studio_ID], [t].[Title], [t].[Studio_ID0], [t].[Country], [t].[Founded], [t].[Info], [t].[Name], [s0].[Screening_ID], [s0].[Film_ID], [s0].[Hall], [s0].[StartTime], [s0].[TicketPrice], [s0].[TotalSeats]
+FROM (
+    SELECT TOP(1) [f].[Film_ID], [f].[Description], [f].[Duration], [f].[Genre], [f].[Rating], [f].[ReleaseYear], [f].[Studio_ID], [f].[Title], [s].[Studio_ID] AS [Studio_ID0], [s].[Country], [s].[Founded], [s].[Info], [s].[Name]
+    FROM [Films] AS [f]
+    INNER JOIN [Studios] AS [s] ON [f].[Studio_ID] = [s].[Studio_ID]
+    WHERE [f].[Film_ID] = @__id_0
+) AS [t]
+LEFT JOIN [Screenings] AS [s0] ON [t].[Film_ID] = [s0].[Film_ID]
+ORDER BY [t].[Film_ID], [t].[Studio_ID0]
+2026-05-04 09:25:05 [INF] Film details viewed: Aquaman
+2026-05-04 09:25:05 [INF] Executed handler method OnGetAsync, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2026-05-04 09:25:05 [INF] Executed page /Films/Details in 65.7199ms
+2026-05-04 09:25:05 [INF] Executed endpoint '/Films/Details'
+2026-05-04 09:25:05 [INF] HTTP GET /Films/Details/11 responded 200 in 75.0598 ms
+2026-05-04 09:25:05 [INF] Request finished HTTP/1.1 GET http://localhost:5000/Films/Details/11 - 200 null text/html; charset=utf-8 82.9313ms
+2026-05-04 09:26:31 [INF] Request starting HTTP/1.1 GET http://localhost:5000/ - null null
+2026-05-04 09:26:31 [INF] Executing endpoint '/Index'
+2026-05-04 09:26:31 [INF] Route matched with {page = "/Index"}. Executing page /Index
+2026-05-04 09:26:31 [INF] Executing handler method CinemaApp.Pages.IndexModel.OnGetAsync - ModelState is "Valid"
+2026-05-04 09:26:31 [INF] Dashboard loaded at "2026-05-04T09:26:31.8116760+03:00"
+2026-05-04 09:26:31 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Films] AS [f]
+2026-05-04 09:26:31 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Studios] AS [s]
+2026-05-04 09:26:31 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Screenings] AS [s]
+2026-05-04 09:26:31 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COALESCE(SUM([t].[Quantity]), 0)
+FROM [Tickets] AS [t]
+2026-05-04 09:26:31 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Customers] AS [c]
+2026-05-04 09:26:31 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COALESCE(SUM(CAST([t].[Quantity] AS float) * [s].[TicketPrice]), 0.0E0)
+FROM [Tickets] AS [t]
+INNER JOIN [Screenings] AS [s] ON [t].[Screening_ID] = [s].[Screening_ID]
+2026-05-04 09:26:31 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_0) [f].[Title], COALESCE(SUM([t].[Quantity]), 0)
+FROM [Tickets] AS [t]
+INNER JOIN [Screenings] AS [s] ON [t].[Screening_ID] = [s].[Screening_ID]
+INNER JOIN [Films] AS [f] ON [s].[Film_ID] = [f].[Film_ID]
+GROUP BY [f].[Title]
+ORDER BY COALESCE(SUM([t].[Quantity]), 0) DESC
+2026-05-04 09:26:31 [INF] Executed handler method OnGetAsync, returned result .
+2026-05-04 09:26:31 [INF] Executing an implicit handler method - ModelState is "Valid"
+2026-05-04 09:26:31 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2026-05-04 09:26:31 [INF] Executed page /Index in 33.3681ms
+2026-05-04 09:26:31 [INF] Executed endpoint '/Index'
+2026-05-04 09:26:31 [INF] HTTP GET / responded 200 in 39.8947 ms
+2026-05-04 09:26:31 [INF] Request finished HTTP/1.1 GET http://localhost:5000/ - 200 null text/html; charset=utf-8 46.4279ms
+2026-05-04 09:29:03 [INF] Request starting HTTP/1.1 GET http://localhost:5000/ - null null
+2026-05-04 09:29:03 [INF] Executing endpoint '/Index'
+2026-05-04 09:29:03 [INF] Route matched with {page = "/Index"}. Executing page /Index
+2026-05-04 09:29:03 [INF] Executing handler method CinemaApp.Pages.IndexModel.OnGetAsync - ModelState is "Valid"
+2026-05-04 09:29:03 [INF] Dashboard loaded at "2026-05-04T09:29:03.7176510+03:00"
+2026-05-04 09:29:03 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Films] AS [f]
+2026-05-04 09:29:03 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Studios] AS [s]
+2026-05-04 09:29:03 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Screenings] AS [s]
+2026-05-04 09:29:03 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COALESCE(SUM([t].[Quantity]), 0)
+FROM [Tickets] AS [t]
+2026-05-04 09:29:03 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Customers] AS [c]
+2026-05-04 09:29:03 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COALESCE(SUM(CAST([t].[Quantity] AS float) * [s].[TicketPrice]), 0.0E0)
+FROM [Tickets] AS [t]
+INNER JOIN [Screenings] AS [s] ON [t].[Screening_ID] = [s].[Screening_ID]
+2026-05-04 09:29:03 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_0) [f].[Title], COALESCE(SUM([t].[Quantity]), 0)
+FROM [Tickets] AS [t]
+INNER JOIN [Screenings] AS [s] ON [t].[Screening_ID] = [s].[Screening_ID]
+INNER JOIN [Films] AS [f] ON [s].[Film_ID] = [f].[Film_ID]
+GROUP BY [f].[Title]
+ORDER BY COALESCE(SUM([t].[Quantity]), 0) DESC
+2026-05-04 09:29:03 [INF] Executed handler method OnGetAsync, returned result .
+2026-05-04 09:29:03 [INF] Executing an implicit handler method - ModelState is "Valid"
+2026-05-04 09:29:03 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2026-05-04 09:29:03 [INF] Executed page /Index in 32.0041ms
+2026-05-04 09:29:03 [INF] Executed endpoint '/Index'
+2026-05-04 09:29:03 [INF] HTTP GET / responded 200 in 40.9219 ms
+2026-05-04 09:29:03 [INF] Request finished HTTP/1.1 GET http://localhost:5000/ - 200 null text/html; charset=utf-8 50.0993ms
+2026-05-04 09:29:10 [INF] Request starting HTTP/1.1 GET http://localhost:5000/Films - null null
+2026-05-04 09:29:10 [INF] Executing endpoint '/Films/Index'
+2026-05-04 09:29:10 [INF] Route matched with {page = "/Films/Index"}. Executing page /Films/Index
+2026-05-04 09:29:10 [INF] Executing handler method CinemaApp.Pages.Films.IndexModel.OnGetAsync - ModelState is "Valid"
+2026-05-04 09:29:10 [INF] Films list requested. Filter: title=null, genre=null
+2026-05-04 09:29:10 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [f].[Film_ID], [f].[Description], [f].[Duration], [f].[Genre], [f].[Rating], [f].[ReleaseYear], [f].[Studio_ID], [f].[Title], [s].[Studio_ID], [s].[Country], [s].[Founded], [s].[Info], [s].[Name]
+FROM [Films] AS [f]
+INNER JOIN [Studios] AS [s] ON [f].[Studio_ID] = [s].[Studio_ID]
+ORDER BY [f].[Title]
+2026-05-04 09:29:10 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Studio_ID], [s].[Country], [s].[Founded], [s].[Info], [s].[Name]
+FROM [Studios] AS [s]
+2026-05-04 09:29:10 [INF] Executed handler method OnGetAsync, returned result .
+2026-05-04 09:29:10 [INF] Executing an implicit handler method - ModelState is "Valid"
+2026-05-04 09:29:10 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2026-05-04 09:29:10 [INF] Executed page /Films/Index in 17.2175ms
+2026-05-04 09:29:10 [INF] Executed endpoint '/Films/Index'
+2026-05-04 09:29:10 [INF] HTTP GET /Films responded 200 in 24.5493 ms
+2026-05-04 09:29:10 [INF] Request finished HTTP/1.1 GET http://localhost:5000/Films - 200 null text/html; charset=utf-8 31.6331ms
+2026-05-04 09:29:11 [INF] Request starting HTTP/1.1 GET http://localhost:5000/Studios - null null
+2026-05-04 09:29:11 [INF] Executing endpoint '/Studios/Index'
+2026-05-04 09:29:11 [INF] Route matched with {page = "/Studios/Index"}. Executing page /Studios/Index
+2026-05-04 09:29:11 [INF] Executing handler method CinemaApp.Pages.Studios.IndexModel.OnGetAsync - ModelState is "Valid"
+2026-05-04 09:29:11 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Studio_ID], [s].[Country], [s].[Founded], [s].[Info], [s].[Name]
+FROM [Studios] AS [s]
+ORDER BY [s].[Name]
+2026-05-04 09:29:11 [INF] Studios filtered: name=null, country=null
+2026-05-04 09:29:11 [INF] Executed handler method OnGetAsync, returned result .
+2026-05-04 09:29:11 [INF] Executing an implicit handler method - ModelState is "Valid"
+2026-05-04 09:29:11 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2026-05-04 09:29:11 [INF] Executed page /Studios/Index in 22.2071ms
+2026-05-04 09:29:11 [INF] Executed endpoint '/Studios/Index'
+2026-05-04 09:29:11 [INF] HTTP GET /Studios responded 200 in 30.6884 ms
+2026-05-04 09:29:11 [INF] Request finished HTTP/1.1 GET http://localhost:5000/Studios - 200 null text/html; charset=utf-8 36.7436ms
+2026-05-04 09:29:12 [INF] Request starting HTTP/1.1 GET http://localhost:5000/Screenings - null null
+2026-05-04 09:29:12 [INF] Executing endpoint '/Screenings/Index'
+2026-05-04 09:29:12 [INF] Route matched with {page = "/Screenings/Index"}. Executing page /Screenings/Index
+2026-05-04 09:29:12 [INF] Executing handler method CinemaApp.Pages.Screenings.IndexModel.OnGetAsync - ModelState is "Valid"
+2026-05-04 09:29:12 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Screening_ID], [s].[Film_ID], [s].[Hall], [s].[StartTime], [s].[TicketPrice], [s].[TotalSeats], [f].[Film_ID], [f].[Description], [f].[Duration], [f].[Genre], [f].[Rating], [f].[ReleaseYear], [f].[Studio_ID], [f].[Title], [s0].[Studio_ID], [s0].[Country], [s0].[Founded], [s0].[Info], [s0].[Name]
+FROM [Screenings] AS [s]
+INNER JOIN [Films] AS [f] ON [s].[Film_ID] = [f].[Film_ID]
+INNER JOIN [Studios] AS [s0] ON [f].[Studio_ID] = [s0].[Studio_ID]
+ORDER BY [s].[StartTime]
+2026-05-04 09:29:12 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [f].[Film_ID], [f].[Description], [f].[Duration], [f].[Genre], [f].[Rating], [f].[ReleaseYear], [f].[Studio_ID], [f].[Title]
+FROM [Films] AS [f]
+ORDER BY [f].[Title]
+2026-05-04 09:29:12 [INF] Screenings filtered, count=15
+2026-05-04 09:29:12 [INF] Executed handler method OnGetAsync, returned result .
+2026-05-04 09:29:12 [INF] Executing an implicit handler method - ModelState is "Valid"
+2026-05-04 09:29:12 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2026-05-04 09:29:12 [INF] Executed page /Screenings/Index in 38.3495ms
+2026-05-04 09:29:12 [INF] Executed endpoint '/Screenings/Index'
+2026-05-04 09:29:12 [INF] HTTP GET /Screenings responded 200 in 46.2371 ms
+2026-05-04 09:29:12 [INF] Request finished HTTP/1.1 GET http://localhost:5000/Screenings - 200 null text/html; charset=utf-8 52.1691ms
+2026-05-04 09:29:13 [INF] Request starting HTTP/1.1 GET http://localhost:5000/Tickets - null null
+2026-05-04 09:29:13 [INF] Executing endpoint '/Tickets/Index'
+2026-05-04 09:29:13 [INF] Route matched with {page = "/Tickets/Index"}. Executing page /Tickets/Index
+2026-05-04 09:29:13 [INF] Executing handler method CinemaApp.Pages.Tickets.IndexModel.OnGetAsync - ModelState is "Valid"
+2026-05-04 09:29:13 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Ticket_ID], [t].[Booking_No], [t].[Customer_ID], [t].[PurchaseDate], [t].[Quantity], [t].[Screening_ID], [t].[SeatNumber], [c].[Customer_ID], [c].[Email], [c].[FirstName], [c].[LastName], [c].[Phone], [s].[Screening_ID], [s].[Film_ID], [s].[Hall], [s].[StartTime], [s].[TicketPrice], [s].[TotalSeats], [f].[Film_ID], [f].[Description], [f].[Duration], [f].[Genre], [f].[Rating], [f].[ReleaseYear], [f].[Studio_ID], [f].[Title]
+FROM [Tickets] AS [t]
+INNER JOIN [Customers] AS [c] ON [t].[Customer_ID] = [c].[Customer_ID]
+INNER JOIN [Screenings] AS [s] ON [t].[Screening_ID] = [s].[Screening_ID]
+INNER JOIN [Films] AS [f] ON [s].[Film_ID] = [f].[Film_ID]
+ORDER BY [t].[PurchaseDate] DESC
+2026-05-04 09:29:13 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Customer_ID], [c].[Email], [c].[FirstName], [c].[LastName], [c].[Phone]
+FROM [Customers] AS [c]
+ORDER BY [c].[LastName]
+2026-05-04 09:29:13 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [f].[Film_ID], [f].[Description], [f].[Duration], [f].[Genre], [f].[Rating], [f].[ReleaseYear], [f].[Studio_ID], [f].[Title]
+FROM [Films] AS [f]
+ORDER BY [f].[Title]
+2026-05-04 09:29:13 [INF] Tickets filtered, count=16
+2026-05-04 09:29:13 [INF] Executed handler method OnGetAsync, returned result .
+2026-05-04 09:29:13 [INF] Executing an implicit handler method - ModelState is "Valid"
+2026-05-04 09:29:13 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2026-05-04 09:29:13 [INF] Executed page /Tickets/Index in 58.7198ms
+2026-05-04 09:29:13 [INF] Executed endpoint '/Tickets/Index'
+2026-05-04 09:29:13 [INF] HTTP GET /Tickets responded 200 in 65.6959 ms
+2026-05-04 09:29:13 [INF] Request finished HTTP/1.1 GET http://localhost:5000/Tickets - 200 null text/html; charset=utf-8 72.0867ms
+2026-05-04 09:29:13 [INF] Request starting HTTP/1.1 GET http://localhost:5000/Customers - null null
+2026-05-04 09:29:13 [INF] Executing endpoint '/Customers/Index'
+2026-05-04 09:29:13 [INF] Route matched with {page = "/Customers/Index"}. Executing page /Customers/Index
+2026-05-04 09:29:13 [INF] Executing handler method CinemaApp.Pages.Customers.IndexModel.OnGetAsync - ModelState is "Valid"
+2026-05-04 09:29:13 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Customer_ID], [c].[Email], [c].[FirstName], [c].[LastName], [c].[Phone]
+FROM [Customers] AS [c]
+ORDER BY [c].[LastName]
+2026-05-04 09:29:13 [INF] Customers filtered, count=6
+2026-05-04 09:29:13 [INF] Executed handler method OnGetAsync, returned result .
+2026-05-04 09:29:13 [INF] Executing an implicit handler method - ModelState is "Valid"
+2026-05-04 09:29:13 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2026-05-04 09:29:13 [INF] Executed page /Customers/Index in 18.2369ms
+2026-05-04 09:29:13 [INF] Executed endpoint '/Customers/Index'
+2026-05-04 09:29:13 [INF] HTTP GET /Customers responded 200 in 26.2768 ms
+2026-05-04 09:29:13 [INF] Request finished HTTP/1.1 GET http://localhost:5000/Customers - 200 null text/html; charset=utf-8 32.729ms
+2026-05-04 09:29:14 [INF] Request starting HTTP/1.1 GET http://localhost:5000/Films - null null
+2026-05-04 09:29:14 [INF] Executing endpoint '/Films/Index'
+2026-05-04 09:29:14 [INF] Route matched with {page = "/Films/Index"}. Executing page /Films/Index
+2026-05-04 09:29:14 [INF] Executing handler method CinemaApp.Pages.Films.IndexModel.OnGetAsync - ModelState is "Valid"
+2026-05-04 09:29:14 [INF] Films list requested. Filter: title=null, genre=null
+2026-05-04 09:29:14 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [f].[Film_ID], [f].[Description], [f].[Duration], [f].[Genre], [f].[Rating], [f].[ReleaseYear], [f].[Studio_ID], [f].[Title], [s].[Studio_ID], [s].[Country], [s].[Founded], [s].[Info], [s].[Name]
+FROM [Films] AS [f]
+INNER JOIN [Studios] AS [s] ON [f].[Studio_ID] = [s].[Studio_ID]
+ORDER BY [f].[Title]
+2026-05-04 09:29:14 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Studio_ID], [s].[Country], [s].[Founded], [s].[Info], [s].[Name]
+FROM [Studios] AS [s]
+2026-05-04 09:29:14 [INF] Executed handler method OnGetAsync, returned result .
+2026-05-04 09:29:14 [INF] Executing an implicit handler method - ModelState is "Valid"
+2026-05-04 09:29:14 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2026-05-04 09:29:14 [INF] Executed page /Films/Index in 14.4181ms
+2026-05-04 09:29:14 [INF] Executed endpoint '/Films/Index'
+2026-05-04 09:29:14 [INF] HTTP GET /Films responded 200 in 20.6302 ms
+2026-05-04 09:29:14 [INF] Request finished HTTP/1.1 GET http://localhost:5000/Films - 200 null text/html; charset=utf-8 26.7052ms
+2026-05-04 09:29:15 [INF] Request starting HTTP/1.1 GET http://localhost:5000/Films/Edit/11 - null null
+2026-05-04 09:29:15 [INF] Executing endpoint '/Films/Edit'
+2026-05-04 09:29:15 [INF] Route matched with {page = "/Films/Edit"}. Executing page /Films/Edit
+2026-05-04 09:29:15 [INF] Executing handler method CinemaApp.Pages.Films.EditModel.OnGetAsync - ModelState is "Valid"
+2026-05-04 09:29:15 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [f].[Film_ID], [f].[Description], [f].[Duration], [f].[Genre], [f].[Rating], [f].[ReleaseYear], [f].[Studio_ID], [f].[Title]
+FROM [Films] AS [f]
+WHERE [f].[Film_ID] = @__p_0
+2026-05-04 09:29:15 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Studio_ID], [s].[Country], [s].[Founded], [s].[Info], [s].[Name]
+FROM [Studios] AS [s]
+2026-05-04 09:29:15 [INF] Executed handler method OnGetAsync, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2026-05-04 09:29:15 [INF] Executed page /Films/Edit in 13.0055ms
+2026-05-04 09:29:15 [INF] Executed endpoint '/Films/Edit'
+2026-05-04 09:29:15 [INF] HTTP GET /Films/Edit/11 responded 200 in 19.9465 ms
+2026-05-04 09:29:15 [INF] Request finished HTTP/1.1 GET http://localhost:5000/Films/Edit/11 - 200 null text/html; charset=utf-8 26.0342ms
+2026-05-04 09:37:48 [INF] Request starting HTTP/1.1 GET http://localhost:5000/Films/Edit/11 - null null
+2026-05-04 09:37:48 [INF] Executing endpoint '/Films/Edit'
+2026-05-04 09:37:48 [INF] Route matched with {page = "/Films/Edit"}. Executing page /Films/Edit
+2026-05-04 09:37:48 [INF] Executing handler method CinemaApp.Pages.Films.EditModel.OnGetAsync - ModelState is "Valid"
+2026-05-04 09:37:48 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [f].[Film_ID], [f].[Description], [f].[Duration], [f].[Genre], [f].[Rating], [f].[ReleaseYear], [f].[Studio_ID], [f].[Title]
+FROM [Films] AS [f]
+WHERE [f].[Film_ID] = @__p_0
+2026-05-04 09:37:48 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Studio_ID], [s].[Country], [s].[Founded], [s].[Info], [s].[Name]
+FROM [Studios] AS [s]
+2026-05-04 09:37:48 [INF] Executed handler method OnGetAsync, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2026-05-04 09:37:48 [INF] Executed page /Films/Edit in 19.267ms
+2026-05-04 09:37:48 [INF] Executed endpoint '/Films/Edit'
+2026-05-04 09:37:48 [INF] HTTP GET /Films/Edit/11 responded 200 in 26.7916 ms
+2026-05-04 09:37:48 [INF] Request finished HTTP/1.1 GET http://localhost:5000/Films/Edit/11 - 200 null text/html; charset=utf-8 33.2423ms
+2026-05-04 09:44:34 [INF] Request starting HTTP/1.1 GET http://localhost:5000/ - null null
+2026-05-04 09:44:34 [INF] Executing endpoint '/Index'
+2026-05-04 09:44:34 [INF] Route matched with {page = "/Index"}. Executing page /Index
+2026-05-04 09:44:34 [INF] Executing handler method CinemaApp.Pages.IndexModel.OnGetAsync - ModelState is "Valid"
+2026-05-04 09:44:34 [INF] Dashboard loaded at "2026-05-04T09:44:34.8995541+03:00"
+2026-05-04 09:44:34 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Films] AS [f]
+2026-05-04 09:44:34 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Studios] AS [s]
+2026-05-04 09:44:34 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Screenings] AS [s]
+2026-05-04 09:44:34 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COALESCE(SUM([t].[Quantity]), 0)
+FROM [Tickets] AS [t]
+2026-05-04 09:44:34 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Customers] AS [c]
+2026-05-04 09:44:34 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COALESCE(SUM(CAST([t].[Quantity] AS float) * [s].[TicketPrice]), 0.0E0)
+FROM [Tickets] AS [t]
+INNER JOIN [Screenings] AS [s] ON [t].[Screening_ID] = [s].[Screening_ID]
+2026-05-04 09:44:34 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_0) [f].[Title], COALESCE(SUM([t].[Quantity]), 0)
+FROM [Tickets] AS [t]
+INNER JOIN [Screenings] AS [s] ON [t].[Screening_ID] = [s].[Screening_ID]
+INNER JOIN [Films] AS [f] ON [s].[Film_ID] = [f].[Film_ID]
+GROUP BY [f].[Title]
+ORDER BY COALESCE(SUM([t].[Quantity]), 0) DESC
+2026-05-04 09:44:34 [INF] Executed handler method OnGetAsync, returned result .
+2026-05-04 09:44:34 [INF] Executing an implicit handler method - ModelState is "Valid"
+2026-05-04 09:44:34 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2026-05-04 09:44:34 [INF] Executed page /Index in 30.0378ms
+2026-05-04 09:44:34 [INF] Executed endpoint '/Index'
+2026-05-04 09:44:34 [INF] HTTP GET / responded 200 in 37.6872 ms
+2026-05-04 09:44:34 [INF] Request finished HTTP/1.1 GET http://localhost:5000/ - 200 null text/html; charset=utf-8 45.3853ms
+2026-05-04 09:44:36 [INF] Request starting HTTP/1.1 GET http://localhost:5000/Studios - null null
+2026-05-04 09:44:36 [INF] Executing endpoint '/Studios/Index'
+2026-05-04 09:44:36 [INF] Route matched with {page = "/Studios/Index"}. Executing page /Studios/Index
+2026-05-04 09:44:36 [INF] Executing handler method CinemaApp.Pages.Studios.IndexModel.OnGetAsync - ModelState is "Valid"
+2026-05-04 09:44:36 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Studio_ID], [s].[Country], [s].[Founded], [s].[Info], [s].[Name]
+FROM [Studios] AS [s]
+ORDER BY [s].[Name]
+2026-05-04 09:44:36 [INF] Studios filtered: name=null, country=null
+2026-05-04 09:44:36 [INF] Executed handler method OnGetAsync, returned result .
+2026-05-04 09:44:36 [INF] Executing an implicit handler method - ModelState is "Valid"
+2026-05-04 09:44:36 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2026-05-04 09:44:36 [INF] Executed page /Studios/Index in 13.2208ms
+2026-05-04 09:44:36 [INF] Executed endpoint '/Studios/Index'
+2026-05-04 09:44:36 [INF] HTTP GET /Studios responded 200 in 20.8294 ms
+2026-05-04 09:44:36 [INF] Request finished HTTP/1.1 GET http://localhost:5000/Studios - 200 null text/html; charset=utf-8 28.0202ms
+2026-05-04 09:44:37 [INF] Request starting HTTP/1.1 GET http://localhost:5000/Studios/Edit/5 - null null
+2026-05-04 09:44:37 [INF] Executing endpoint '/Studios/Edit'
+2026-05-04 09:44:37 [INF] Route matched with {page = "/Studios/Edit"}. Executing page /Studios/Edit
+2026-05-04 09:44:37 [INF] Executing handler method CinemaApp.Pages.Studios.EditModel.OnGetAsync - ModelState is "Valid"
+2026-05-04 09:44:37 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[Studio_ID], [s].[Country], [s].[Founded], [s].[Info], [s].[Name]
+FROM [Studios] AS [s]
+WHERE [s].[Studio_ID] = @__p_0
+2026-05-04 09:44:37 [INF] Executed handler method OnGetAsync, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2026-05-04 09:44:37 [INF] Executed page /Studios/Edit in 31.3369ms
+2026-05-04 09:44:37 [INF] Executed endpoint '/Studios/Edit'
+2026-05-04 09:44:37 [INF] HTTP GET /Studios/Edit/5 responded 200 in 41.2452 ms
+2026-05-04 09:44:37 [INF] Request finished HTTP/1.1 GET http://localhost:5000/Studios/Edit/5 - 200 null text/html; charset=utf-8 47.8713ms
+2026-05-04 09:44:47 [INF] Request starting HTTP/1.1 GET http://localhost:5000/ - null null
+2026-05-04 09:44:47 [INF] Executing endpoint '/Index'
+2026-05-04 09:44:47 [INF] Route matched with {page = "/Index"}. Executing page /Index
+2026-05-04 09:44:47 [INF] Executing handler method CinemaApp.Pages.IndexModel.OnGetAsync - ModelState is "Valid"
+2026-05-04 09:44:47 [INF] Dashboard loaded at "2026-05-04T09:44:47.9378065+03:00"
+2026-05-04 09:44:47 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Films] AS [f]
+2026-05-04 09:44:47 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Studios] AS [s]
+2026-05-04 09:44:47 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Screenings] AS [s]
+2026-05-04 09:44:47 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COALESCE(SUM([t].[Quantity]), 0)
+FROM [Tickets] AS [t]
+2026-05-04 09:44:47 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Customers] AS [c]
+2026-05-04 09:44:47 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COALESCE(SUM(CAST([t].[Quantity] AS float) * [s].[TicketPrice]), 0.0E0)
+FROM [Tickets] AS [t]
+INNER JOIN [Screenings] AS [s] ON [t].[Screening_ID] = [s].[Screening_ID]
+2026-05-04 09:44:47 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_0) [f].[Title], COALESCE(SUM([t].[Quantity]), 0)
+FROM [Tickets] AS [t]
+INNER JOIN [Screenings] AS [s] ON [t].[Screening_ID] = [s].[Screening_ID]
+INNER JOIN [Films] AS [f] ON [s].[Film_ID] = [f].[Film_ID]
+GROUP BY [f].[Title]
+ORDER BY COALESCE(SUM([t].[Quantity]), 0) DESC
+2026-05-04 09:44:47 [INF] Executed handler method OnGetAsync, returned result .
+2026-05-04 09:44:47 [INF] Executing an implicit handler method - ModelState is "Valid"
+2026-05-04 09:44:47 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2026-05-04 09:44:47 [INF] Executed page /Index in 29.7086ms
+2026-05-04 09:44:47 [INF] Executed endpoint '/Index'
+2026-05-04 09:44:47 [INF] HTTP GET / responded 200 in 36.7178 ms
+2026-05-04 09:44:47 [INF] Request finished HTTP/1.1 GET http://localhost:5000/ - 200 null text/html; charset=utf-8 43.5028ms

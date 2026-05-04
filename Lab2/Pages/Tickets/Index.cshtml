@@ -1,0 +1,99 @@
+@page
+@model CinemaApp.Pages.Tickets.IndexModel
+@{ViewData["Title"] = "Квитки";}
+
+<div class="page-header">
+    <div>
+        <div class="page-title">КВИТКИ</div>
+        <div class="page-subtitle">Знайдено: @Model.Tickets.Count()</div>
+    </div>
+    <a href="/Tickets/Create" class="btn btn-primary">Продати квиток</a>
+</div>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+
+<form method="get" class="search-bar">
+    <select name="SearchCustomerId" class="form-control" style="max-width:220px">
+        <option value="">— Всі клієнти —</option>
+        @if (Model.Customers != null)
+        {
+            foreach (var item in Model.Customers)
+            {
+                if (Model.SearchCustomerId?.ToString() == item.Value)
+                {
+                    <option value="@item.Value" selected="selected">@item.Text</option>
+                }
+                else
+                {
+                    <option value="@item.Value">@item.Text</option>
+                }
+            }
+        }
+    </select>
+    <select name="SearchFilmId" class="form-control" style="max-width:220px">
+        <option value="">— Всі фільми —</option>
+        @if (Model.Films != null)
+        {
+            foreach (var item in Model.Films)
+            {
+                if (Model.SearchFilmId?.ToString() == item.Value)
+                {
+                    <option value="@item.Value" selected="selected">@item.Text</option>
+                }
+                else
+                {
+                    <option value="@item.Value">@item.Text</option>
+                }
+            }
+        }
+    </select>
+    <input type="date" name="SearchDate" class="form-control"
+           value="@Model.SearchDate?.ToString("yyyy-MM-dd")" style="max-width:180px">
+    <button type="submit" class="btn btn-primary">Фільтр</button>
+    <a href="/Tickets" class="btn btn-secondary">Скинути</a>
+</form>
+
+@if (!Model.Tickets.Any())
+{
+    <div class="empty-state">
+        <div class="empty-state-icon"></div>
+        <p>Квитків не знайдено</p>
+    </div>
+}
+else
+{
+    <div class="table-wrapper">
+        <table class="data-table">
+            <thead>
+                <tr><th>#</th><th>Клієнт</th><th>Фільм</th><th>Зал / Час</th><th>Місце</th><th>К-сть</th><th>Дата купівлі</th><th>Бронювання</th><th>Дії</th></tr>
+            </thead>
+            <tbody>
+            @foreach (var t in Model.Tickets)
+            {
+                <tr>
+                    <td style="color:var(--text-muted)">@t.Ticket_ID</td>
+                    <td><strong>@t.Customer?.FirstName @t.Customer?.LastName</strong></td>
+                    <td>@t.Screening?.Film?.Title</td>
+                    <td style="font-size:0.82rem">
+                        @t.Screening?.Hall<br>
+                        <span style="color:var(--text-muted)">@t.Screening?.StartTime.ToString("dd.MM HH:mm")</span>
+                    </td>
+                    <td>@(t.SeatNumber?.ToString() ?? "—")</td>
+                    <td><span class="badge badge-genre">×@t.Quantity</span></td>
+                    <td>@t.PurchaseDate.ToString("dd.MM.yyyy")</td>
+                    <td style="color:var(--text-muted)">@(t.Booking_No?.ToString() ?? "—")</td>
+                    <td>
+                        <div class="actions">
+                            <a href="/Tickets/Edit/@t.Ticket_ID" class="btn btn-sm btn-secondary">✏️</a>
+                            <a href="/Tickets/Delete/@t.Ticket_ID" class="btn btn-sm btn-danger">🗑</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}

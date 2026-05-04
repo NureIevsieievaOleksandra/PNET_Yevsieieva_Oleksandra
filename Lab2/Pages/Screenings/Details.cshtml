@@ -1,0 +1,47 @@
+@page "{id:int}"
+@model CinemaApp.Pages.Screenings.DetailsModel
+@{ViewData["Title"] = "Сеанс";}
+
+<div class="page-header">
+    <div>
+        <div class="page-title">СЕАНС #@Model.Screening.Screening_ID</div>
+        <div class="page-subtitle">@Model.Screening.Film?.Title</div>
+    </div>
+    <div style="display:flex;gap:.5rem">
+        <a href="/Screenings/Edit/@Model.Screening.Screening_ID" class="btn btn-primary">Редагувати</a>
+        <a href="/Screenings" class="btn btn-secondary">← Назад</a>
+    </div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem">
+    <div class="card">
+        <div class="card-header">ДЕТАЛІ СЕАНСУ</div>
+        <div class="detail-item"><div class="detail-label">Фільм</div><div class="detail-value">@Model.Screening.Film?.Title</div></div>
+        <div class="detail-item"><div class="detail-label">Студія</div><div class="detail-value">@Model.Screening.Film?.Studio?.Name</div></div>
+        <div class="detail-item"><div class="detail-label">Зал</div><div class="detail-value">@(Model.Screening.Hall ?? "—")</div></div>
+        <div class="detail-item"><div class="detail-label">Час початку</div><div class="detail-value">@Model.Screening.StartTime.ToString("dd.MM.yyyy HH:mm")</div></div>
+        <div class="detail-item"><div class="detail-label">Ціна квитка</div><div class="detail-value"><span class="badge badge-price">@Model.Screening.TicketPrice грн</span></div></div>
+        <div class="detail-item"><div class="detail-label">Місць всього</div><div class="detail-value">@Model.Screening.TotalSeats</div></div>
+    </div>
+    <div class="card">
+        <div class="card-header">КВИТКИ (@Model.Screening.Tickets.Count)</div>
+        @if (Model.Screening.Tickets.Any())
+        {
+            <table class="data-table">
+                <thead><tr><th>Клієнт</th><th>Місце</th><th>К-сть</th><th>Дата</th></tr></thead>
+                <tbody>
+                @foreach (var t in Model.Screening.Tickets)
+                {
+                    <tr>
+                        <td>@t.Customer?.FirstName @t.Customer?.LastName</td>
+                        <td>@(t.SeatNumber?.ToString() ?? "—")</td>
+                        <td>@t.Quantity</td>
+                        <td>@t.PurchaseDate.ToString("dd.MM.yyyy")</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        }
+        else { <div class="empty-state"><p>Квитки ще не продані</p></div> }
+    </div>
+</div>

@@ -1,0 +1,74 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="hero">
+    <div class="hero-title">CINEMA MANAGER</div>
+    <div class="hero-sub">Система управління кінотеатром · @DateTime.Now.ToString("dd MMMM yyyy", new System.Globalization.CultureInfo("uk-UA"))</div>
+</div>
+
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-value">@Model.FilmsCount</div>
+        <div class="stat-label">Фільми</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-value">@Model.StudiosCount</div>
+        <div class="stat-label">Студії</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-value">@Model.ScreeningsCount</div>
+        <div class="stat-label">Сеанси</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-value">@Model.TicketsCount</div>
+        <div class="stat-label">Квитки</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-value">@Model.CustomersCount</div>
+        <div class="stat-label">Клієнти</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-value">@Model.TotalRevenue.ToString("N0")</div>
+        <div class="stat-label">Дохід (грн)</div>
+    </div>
+</div>
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
+    <div class="card">
+        <div class="card-header">ТОП ФІЛЬМІВ ЗА ПРОДАЖАМИ</div>
+        @if (Model.TopFilms.Any())
+        {
+            <table class="data-table">
+                <thead><tr><th>#</th><th>Фільм</th><th>Квитки</th></tr></thead>
+                <tbody>
+                @foreach (var (film, i) in Model.TopFilms.Select((f,i) => (f, i+1)))
+                {
+                    <tr>
+                        <td><span class="badge badge-genre">@i</span></td>
+                        <td>@film.Title</td>
+                        <td><span class="badge badge-rating">@film.Count</span></td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="empty-state"><div class="empty-state-icon"></div><p>Немає даних</p></div>
+        }
+    </div>
+
+    <div class="card">
+        <div class="card-header">ШВИДКА НАВІГАЦІЯ</div>
+        <div style="display:flex; flex-direction:column; gap:0.75rem;">
+            <a href="/Films/Create" class="btn btn-primary">Додати фільм</a>
+            <a href="/Screenings/Create" class="btn btn-outline">Новий сеанс</a>
+            <a href="/Tickets/Create" class="btn btn-outline">Продати квиток</a>
+            <a href="/Customers/Create" class="btn btn-outline">Новий клієнт</a>
+            <a href="/Studios/Create" class="btn btn-outline">Додати студію</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,85 @@
+@page
+@model CinemaApp.Pages.Films.IndexModel
+@{
+    ViewData["Title"] = "Фільми";
+}
+
+<div class="page-header">
+    <div>
+        <div class="page-title">ФІЛЬМИ</div>
+        <div class="page-subtitle">Усього: @Model.Films.Count() фільмів</div>
+    </div>
+    <a href="/Films/Create" class="btn btn-primary">➕ Додати фільм</a>
+</div>
+
+<form method="get" class="search-bar">
+    <input type="text" name="SearchTitle" class="form-control" placeholder="Назва фільму..." value="@Model.SearchTitle">
+    <input type="text" name="SearchGenre" class="form-control" placeholder="Жанр..." value="@Model.SearchGenre" style="max-width:180px">
+    <select name="SearchStudio" class="form-control" style="max-width:200px">
+        <option value="">— Всі студії —</option>
+        @if (Model.Studios != null)
+        {
+            foreach (var item in Model.Studios)
+            {
+                if (Model.SearchStudio?.ToString() == item.Value)
+                {
+                    <option value="@item.Value" selected="selected">@item.Text</option>
+                }
+                else
+                {
+                    <option value="@item.Value">@item.Text</option>
+                }
+            }
+        }
+    </select>
+    <button type="submit" class="btn btn-primary">Фільтр</button>
+    <a href="/Films" class="btn btn-secondary">Скинути</a>
+</form>
+
+@if (!Model.Films.Any())
+{
+    <div class="empty-state">
+        <div class="empty-state-icon">🎬</div>
+        <p>Фільмів не знайдено</p>
+    </div>
+}
+else
+{
+    <div class="table-wrapper">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Назва</th>
+                    <th>Жанр</th>
+                    <th>Рік</th>
+                    <th>Тривалість</th>
+                    <th>Рейтинг</th>
+                    <th>Студія</th>
+                    <th>Дії</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var film in Model.Films)
+                {
+                    <tr>
+                        <td style="color:var(--text-muted)">@film.Film_ID</td>
+                        <td><strong>@film.Title</strong></td>
+                        <td>@if(film.Genre != null){<span class="badge badge-genre">@film.Genre</span>}</td>
+                        <td>@film.ReleaseYear</td>
+                        <td>@(film.Duration != null ? $"{film.Duration} хв" : "—")</td>
+                        <td>@if(film.Rating != null){<span class="badge badge-rating">⭐ @film.Rating?.ToString("0.0")</span>}</td>
+                        <td style="color:var(--text-muted)">@film.Studio?.Name</td>
+                        <td>
+                            <div class="actions">
+                                <a href="/Films/Details/@film.Film_ID" class="btn btn-sm btn-outline">👁</a>
+                                <a href="/Films/Edit/@film.Film_ID" class="btn btn-sm btn-secondary">✏️</a>
+                                <a href="/Films/Delete/@film.Film_ID" class="btn btn-sm btn-danger">🗑</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

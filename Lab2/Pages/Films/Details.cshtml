@@ -1,0 +1,70 @@
+@page "{id:int}"
+@model CinemaApp.Pages.Films.DetailsModel
+@{
+    ViewData["Title"] = Model.Film.Title;
+}
+
+<div class="page-header">
+    <div>
+        <div class="page-title">@Model.Film.Title.ToUpper()</div>
+        <div class="page-subtitle">Детальна інформація</div>
+    </div>
+    <div style="display:flex;gap:.5rem">
+        <a href="/Films/Edit/@Model.Film.Film_ID" class="btn btn-primary">✏️ Редагувати</a>
+        <a href="/Films" class="btn btn-secondary">← Назад</a>
+    </div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem">
+    <div class="card">
+        <div class="card-header">ІНФОРМАЦІЯ</div>
+        <div class="detail-item">
+            <div class="detail-label">Жанр</div>
+            <div class="detail-value">@(Model.Film.Genre ?? "—") <span class="badge badge-genre">@Model.Film.Genre</span></div>
+        </div>
+        <div class="detail-item">
+            <div class="detail-label">Рік виходу</div>
+            <div class="detail-value">@(Model.Film.ReleaseYear?.ToString() ?? "—")</div>
+        </div>
+        <div class="detail-item">
+            <div class="detail-label">Тривалість</div>
+            <div class="detail-value">@(Model.Film.Duration != null ? $"{Model.Film.Duration} хв" : "—")</div>
+        </div>
+        <div class="detail-item">
+            <div class="detail-label">Рейтинг</div>
+            <div class="detail-value"><span class="badge badge-rating">⭐ @(Model.Film.Rating?.ToString("0.0") ?? "—")</span></div>
+        </div>
+        <div class="detail-item">
+            <div class="detail-label">Студія</div>
+            <div class="detail-value">@Model.Film.Studio?.Name</div>
+        </div>
+        <div class="detail-item">
+            <div class="detail-label">Опис</div>
+            <div class="detail-value">@(Model.Film.Description ?? "—")</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">СЕАНСИ (@Model.Film.Screenings.Count)</div>
+        @if (Model.Film.Screenings.Any())
+        {
+            <table class="data-table">
+                <thead><tr><th>Зал</th><th>Час</th><th>Ціна</th></tr></thead>
+                <tbody>
+                @foreach (var s in Model.Film.Screenings.OrderBy(x => x.StartTime))
+                {
+                    <tr>
+                        <td>@s.Hall</td>
+                        <td>@s.StartTime.ToString("dd.MM HH:mm")</td>
+                        <td><span class="badge badge-price">@s.TicketPrice грн</span></td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="empty-state"><p>Немає запланованих сеансів</p></div>
+        }
+    </div>
+</div>

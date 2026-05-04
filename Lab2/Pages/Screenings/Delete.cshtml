@@ -1,0 +1,17 @@
+@page "{id:int}"
+@model CinemaApp.Pages.Screenings.DeleteModel
+@{ViewData["Title"] = "Видалити сеанс";}
+
+<div class="page-header"><div class="page-title">ВИДАЛИТИ СЕАНС</div></div>
+<div class="card" style="max-width:500px">
+    <div class="alert alert-danger">⚠️ Видалити сеанс фільму <strong>«@Model.Screening.Film?.Title»</strong> (@Model.Screening.StartTime.ToString("dd.MM.yyyy HH:mm"))?</div>
+    <div class="detail-item"><div class="detail-label">Зал</div><div class="detail-value">@Model.Screening.Hall</div></div>
+    <div class="detail-item"><div class="detail-label">Ціна</div><div class="detail-value">@Model.Screening.TicketPrice грн</div></div>
+    <div class="detail-item"><div class="detail-label">Продано квитків</div><div class="detail-value">@Model.Screening.Tickets.Count</div></div>
+    <form method="post" asp-route-id="@Model.Screening.Screening_ID">
+        <div class="form-actions">
+            <button type="submit" class="btn btn-danger">🗑 Видалити</button>
+            <a href="/Screenings" class="btn btn-secondary">Скасувати</a>
+        </div>
+    </form>
+</div>

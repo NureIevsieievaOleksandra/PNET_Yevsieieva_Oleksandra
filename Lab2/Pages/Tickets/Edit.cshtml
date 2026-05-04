@@ -1,0 +1,55 @@
+@page "{id:int}"
+@model CinemaApp.Pages.Tickets.EditModel
+@{ViewData["Title"] = "Редагування квитка";}
+
+<div class="page-header">
+    <div class="page-title">РЕДАГУВАННЯ КВИТКА #@Model.Ticket.Ticket_ID</div>
+    <a href="/Tickets" class="btn btn-secondary">← Назад</a>
+</div>
+<div class="card" style="max-width:600px">
+    <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+    <form method="post">
+        <input type="hidden" asp-for="Ticket.Ticket_ID" />
+        <div class="form-group">
+            <label asp-for="Ticket.Screening_ID" class="form-label"></label>
+            <select asp-for="Ticket.Screening_ID" asp-items="Model.Screenings" class="form-control">
+                <option value="">— Сеанс —</option>
+            </select>
+            <span asp-validation-for="Ticket.Screening_ID" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Ticket.Customer_ID" class="form-label"></label>
+            <select asp-for="Ticket.Customer_ID" asp-items="Model.Customers" class="form-control">
+                <option value="">— Клієнт —</option>
+            </select>
+            <span asp-validation-for="Ticket.Customer_ID" class="text-danger"></span>
+        </div>
+        <div class="form-grid">
+            <div class="form-group">
+                <label asp-for="Ticket.SeatNumber" class="form-label"></label>
+                <input asp-for="Ticket.SeatNumber" class="form-control" type="number" />
+                <span asp-validation-for="Ticket.SeatNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ticket.Quantity" class="form-label"></label>
+                <input asp-for="Ticket.Quantity" class="form-control" type="number" min="1" />
+                <span asp-validation-for="Ticket.Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ticket.PurchaseDate" class="form-label"></label>
+                <input asp-for="Ticket.PurchaseDate" class="form-control" type="date" />
+                <span asp-validation-for="Ticket.PurchaseDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ticket.Booking_No" class="form-label"></label>
+                <input asp-for="Ticket.Booking_No" class="form-control" type="number" />
+                <span asp-validation-for="Ticket.Booking_No" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Зберегти</button>
+            <a href="/Tickets" class="btn btn-secondary">Скасувати</a>
+        </div>
+    </form>
+</div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

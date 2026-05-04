@@ -1,0 +1,16 @@
+@page "{id:int}"
+@model CinemaApp.Pages.Studios.DeleteModel
+@{ViewData["Title"] = "Видалити студію";}
+
+<div class="page-header"><div class="page-title">ВИДАЛИТИ СТУДІЮ</div></div>
+<div class="card" style="max-width:500px">
+    <div class="alert alert-danger">⚠️ Видалити студію <strong>«@Model.Studio.Name»</strong>?</div>
+    <div class="detail-item"><div class="detail-label">Країна</div><div class="detail-value">@(Model.Studio.Country ?? "—")</div></div>
+    <div class="detail-item"><div class="detail-label">Рік</div><div class="detail-value">@(Model.Studio.Founded?.ToString() ?? "—")</div></div>
+    <form method="post" asp-route-id="@Model.Studio.Studio_ID">
+        <div class="form-actions">
+            <button type="submit" class="btn btn-danger">🗑 Видалити</button>
+            <a href="/Studios" class="btn btn-secondary">Скасувати</a>
+        </div>
+    </form>
+</div>

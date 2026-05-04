@@ -1,0 +1,110 @@
+@page
+@model CinemaApp.Pages.Screenings.IndexModel
+@{ViewData["Title"] = "Сеанси";}
+
+<div class="page-header">
+    <div>
+        <div class="page-title">СЕАНСИ</div>
+        <div class="page-subtitle">Знайдено: @Model.Screenings.Count()</div>
+    </div>
+    <a href="/Screenings/Create" class="btn btn-primary">➕ Новий сеанс</a>
+</div>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+
+<form method="get" class="search-bar">
+    <select name="SearchFilmId" class="form-control" style="max-width:220px">
+        <option value="">— Всі фільми —</option>
+        @if (Model.Films != null)
+        {
+            foreach (var item in Model.Films)
+            {
+                if (Model.SearchFilmId?.ToString() == item.Value)
+                {
+                    <option value="@item.Value" selected="selected">@item.Text</option>
+                }
+                else
+                {
+                    <option value="@item.Value">@item.Text</option>
+                }
+            }
+        }
+    </select>
+    <input type="text" name="SearchHall" class="form-control"
+           placeholder="Зал..." value="@Model.SearchHall" style="max-width:150px">
+    <select name="SearchStatus" class="form-control" style="max-width:160px">
+        <option value="">— Всі статуси —</option>
+        @if (Model.SearchStatus == "upcoming")
+        {
+            <option value="upcoming" selected="selected">Майбутні</option>
+            <option value="past">Завершені</option>
+        }
+        else if (Model.SearchStatus == "past")
+        {
+            <option value="upcoming">Майбутні</option>
+            <option value="past" selected="selected">Завершені</option>
+        }
+        else
+        {
+            <option value="upcoming">Майбутні</option>
+            <option value="past">Завершені</option>
+        }
+    </select>
+    <button type="submit" class="btn btn-primary">Фільтр</button>
+    <a href="/Screenings" class="btn btn-secondary">Скинути</a>
+</form>
+
+@if (!Model.Screenings.Any())
+{
+    <div class="empty-state">
+        <div class="empty-state-icon"></div>
+        <p>Сеансів не знайдено</p>
+    </div>
+}
+else
+{
+    <div class="table-wrapper">
+        <table class="data-table">
+            <thead>
+                <tr><th>#</th><th>Фільм</th><th>Зал</th><th>Початок</th><th>Ціна (грн)</th><th>Місць</th><th>Статус</th><th>Дії</th></tr>
+            </thead>
+            <tbody>
+            @foreach (var s in Model.Screenings)
+            {
+                var isPast = s.StartTime < DateTime.Now;
+                <tr>
+                    <td style="color:var(--text-muted)">@s.Screening_ID</td>
+                    <td>
+                        <strong>@s.Film?.Title</strong><br>
+                        <span style="font-size:0.78rem;color:var(--text-muted)">@s.Film?.Studio?.Name</span>
+                    </td>
+                    <td>@(s.Hall ?? "—")</td>
+                    <td>@s.StartTime.ToString("dd.MM.yyyy HH:mm")</td>
+                    <td><span class="badge badge-price">@s.TicketPrice</span></td>
+                    <td>@s.TotalSeats</td>
+                    <td>
+                        @if (isPast)
+                        {
+                            <span class="badge" style="background:rgba(122,122,154,0.2);color:var(--text-muted)">Завершено</span>
+                        }
+                        else
+                        {
+                            <span class="badge badge-rating">Активний</span>
+                        }
+                    </td>
+                    <td>
+                        <div class="actions">
+                            <a href="/Screenings/Details/@s.Screening_ID" class="btn btn-sm btn-outline">👁</a>
+                            <a href="/Screenings/Edit/@s.Screening_ID" class="btn btn-sm btn-secondary">✏️</a>
+                            <a href="/Screenings/Delete/@s.Screening_ID" class="btn btn-sm btn-danger">🗑</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] — CinemaApp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <nav class="navbar">
+        <a class="navbar-brand" href="/">CINEMA</a>
+        <div class="nav-links">
+            <a href="/Films" class="nav-link">Фільми</a>
+            <a href="/Studios" class="nav-link">Студії</a>
+            <a href="/Screenings" class="nav-link">Сеанси</a>
+            <a href="/Tickets" class="nav-link">Квитки</a>
+            <a href="/Customers" class="nav-link">Клієнти</a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        @RenderBody()
+    </main>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

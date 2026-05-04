@@ -1,0 +1,41 @@
+@page "{id:int}"
+@model CinemaApp.Pages.Studios.EditModel
+@{ViewData["Title"] = "Редагування студії";}
+
+<div class="page-header">
+    <div class="page-title">РЕДАГУВАННЯ СТУДІЇ</div>
+    <a href="/Studios" class="btn btn-secondary">← Назад</a>
+</div>
+<div class="card" style="max-width:600px">
+    <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+    <form method="post">
+        <input type="hidden" asp-for="Studio.Studio_ID" />
+        <div class="form-group">
+            <label asp-for="Studio.Name" class="form-label"></label>
+            <input asp-for="Studio.Name" class="form-control" />
+            <span asp-validation-for="Studio.Name" class="text-danger"></span>
+        </div>
+        <div class="form-grid">
+            <div class="form-group">
+                <label asp-for="Studio.Country" class="form-label"></label>
+                <input asp-for="Studio.Country" class="form-control" />
+                <span asp-validation-for="Studio.Country" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Studio.Founded" class="form-label"></label>
+                <input asp-for="Studio.Founded" class="form-control" type="number" />
+                <span asp-validation-for="Studio.Founded" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Studio.Info" class="form-label"></label>
+            <textarea asp-for="Studio.Info" class="form-control" rows="2"></textarea>
+            <span asp-validation-for="Studio.Info" class="text-danger"></span>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Зберегти</button>
+            <a href="/Studios" class="btn btn-secondary">Скасувати</a>
+        </div>
+    </form>
+</div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

@@ -1,0 +1,34 @@
+@page "{id:int}"
+@model CinemaApp.Pages.Films.DeleteModel
+@{
+    ViewData["Title"] = "Видалити фільм";
+}
+
+<div class="page-header">
+    <div class="page-title">ВИДАЛИТИ ФІЛЬМ</div>
+</div>
+
+<div class="card" style="max-width:500px">
+    <div class="alert alert-danger">
+        ⚠️ Ви впевнені, що хочете видалити фільм <strong>«@Model.Film.Title»</strong>?
+        Цю дію неможливо скасувати.
+    </div>
+    <div class="detail-item">
+        <div class="detail-label">Студія</div>
+        <div class="detail-value">@Model.Film.Studio?.Name</div>
+    </div>
+    <div class="detail-item">
+        <div class="detail-label">Рік</div>
+        <div class="detail-value">@Model.Film.ReleaseYear</div>
+    </div>
+    <div class="detail-item">
+        <div class="detail-label">Сеансів</div>
+        <div class="detail-value">@Model.Film.Screenings.Count</div>
+    </div>
+    <form method="post" asp-route-id="@Model.Film.Film_ID">
+        <div class="form-actions">
+            <button type="submit" class="btn btn-danger">🗑 Видалити</button>
+            <a href="/Films" class="btn btn-secondary">Скасувати</a>
+        </div>
+    </form>
+</div>
